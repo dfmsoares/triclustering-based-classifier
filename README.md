@@ -23,27 +23,23 @@ Run the following command to see the input parameters list.
 
 ```
 python3 TCtriCluster.py -h
-
 ```
 Run the triclustering algorithm  with the your defined input parameters and save the result for an output file (`.txt`):
 
 ```
 python3 TCtriCluster.py -f <input_file> -sT <min_t> -sS <min_s> -sG <min_g> -w <win_ratio> -o <opc> -mv <mv_threshold> > <output_file>.txt
-
 ```
 
 Next, with the outputed triclusters you compute the similarity matrices:
 
 ```
-python3 compute_similar_mats_tri.py <datafile> <target_column> <triclusters_output> <matrix_output>
-
+python3 compute_similar_mats_tri.py <datafile> <target_column> <triclusters_output> <matrix_output> <categorical> <continuos>
 ```
 
-Finally, the classifier uses the similarity matrices as the learning examples. This code performs 5 x 10-fold CV to evaluate the performance of the classifier.
+Finally, the classifier uses the similarity matrices as the learning examples. This code performs `n` x `k-fold` CV to evaluate the performance of the classifier.
 
 ```
-python3 compute_predictions.py <matrix_input>  <output.csv>
-
+python3 compute_predictions.py <matrix_input> <output.csv> <k-splits> <n_repeats>
 ```
 
 ## Demo Example
@@ -66,13 +62,13 @@ $ python3 src/TCtriCluster.py -f demo/tab_file.tab -sT 2 -sS 2 -sG 2 -w 0.1 -o 1
 Next, with triclusters and the original dataset we computed the similiarity matrices
 
 ```
-$ python3 src/compute_similar_mats_tri.py demo/d1.csv demo/triclusters_d1.txt demo/sim_matrices Class 3
+$ python3 src/compute_similar_mats_tri.py demo/d1.csv demo/triclusters_d1.txt demo/sim_matrices Class 3 [S1, S2, S3, S4, S5, S6] []
 ```
 
 Finnally with the matrices we run the classifier evaluating the results with repeated stratified k-fold CV:
 
 ```
-$ python3 src/compute_similar_mats_tri.py demo/d1.csv demo/triclusters_d1.txt demo/sim_matrices Class 3
+$ python3 src/compute_predictions.py demo/sim_matrices Class 3 results.csv 2 2
 ```
 
 
