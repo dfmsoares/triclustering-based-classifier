@@ -4,7 +4,7 @@ This work proposes a new class of explainable predictive models from three-way d
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+These instructions will get you how to run the triclustering-based classifier. See the demo section for notes on how to run the demo project on your machine.
 
 ### Prerequisites
 
@@ -80,6 +80,4 @@ $ python3 src/compute_predictions.py demo/sim_matrices Class 3 results.csv 2 2
 * [**Diogo F. Soares**](https://web.lasige.di.fc.ul.pt/~dfsoares/) 
 * Advised by [Sara C. Madeira](https://saracmadeira.wordpress.com)
 
-
-## Acknowledgments
 
