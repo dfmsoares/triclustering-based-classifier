@@ -41,7 +41,7 @@ python3 compute_similar_mats_tri.py <datafile> <target_column> <triclusters_file
 Finally, the classifier uses the similarity matrices as the learning examples. This code performs `n` x `k-fold` Stratified CV to evaluate the performance of the classifier.
 
 ```
-python3 compute_predictions.py <matrix_input> <output.csv> <k-splits> <n_repeats>
+python3 compute_predictions.py <matrix_input_folder> <output.csv> <k-splits> <n_repeats>
 ```
 
 ## Demo Example
