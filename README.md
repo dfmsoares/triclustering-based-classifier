@@ -10,33 +10,35 @@ These instructions will get you a copy of the project up and running on your loc
 
 To run the triclustering-based classifier you need to have Python 3.4 or above installed as well as the following packages:
 * [scikit-learn](https://scikit-learn.org/stable/install.html)
-* [scipy]()
+* [scipy](https://scipy.org/install.html)
 * [numpy](https://numpy.org/install/)
 * [pandas](https://pandas.pydata.org/getting_started.html)
+* [sortedcontainers](http://www.grantjenks.com/docs/sortedcontainers/#quickstart)
 
 
 ### How To Run
 
 First, you should perform triclustering in your data. 
 
-Run the following command to see the input parameters list.
+Run the following command to see the arguments list for `TCtriCluster`.
 
 ```
 python3 TCtriCluster.py -h
 ```
+
 Run the triclustering algorithm  with the your defined input parameters and save the result for an output file (`.txt`):
 
 ```
-python3 TCtriCluster.py -f <input_file> -sT <min_t> -sS <min_s> -sG <min_g> -w <win_ratio> -o <opc> -mv <mv_threshold> > <output_file>.txt
+python3 TCtriCluster.py -f <input_file> -sT <min_t> -sS <min_s> -sG <min_g> -w <win_ratio> -o <opc> [-mv <mv_threshold>] > <output_file>.txt
 ```
 
-Next, with the outputed triclusters you compute the similarity matrices:
+Next, with the produced triclusters, you compute the similarity matrices:
 
 ```
-python3 compute_similar_mats_tri.py <datafile> <target_column> <triclusters_output> <matrix_output> <categorical> <continuos>
+python3 compute_similar_mats_tri.py <datafile> <target_column> <triclusters_file> <matrix_output> <categorical_features> <continuos_features>
 ```
 
-Finally, the classifier uses the similarity matrices as the learning examples. This code performs `n` x `k-fold` CV to evaluate the performance of the classifier.
+Finally, the classifier uses the similarity matrices as the learning examples. This code performs `n` x `k-fold` Stratified CV to evaluate the performance of the classifier.
 
 ```
 python3 compute_predictions.py <matrix_input> <output.csv> <k-splits> <n_repeats>
@@ -46,10 +48,11 @@ python3 compute_predictions.py <matrix_input> <output.csv> <k-splits> <n_repeats
 
 We provide a demo example in [`demo`](/demo) folder.
 
-First we parsed the [d1.csv](/demo/d1.csv) file to achieve the required formatting by the triclustering algorithm. To do this use the following command:
+First we parsed the [d1.csv](/demo/d1.csv) file to achieve the required formatting by the triclustering algorithm. To do this, use the following command:
 
 ```
 # Usage python3 src/als_dataframe.py <csv_file> <output_tabfile> <target_var> <n_timepoints>
+
 $ python3 src/als_dataframe.py demo/d1.csv demo/tab_file.tab Class 3
 ```
 
@@ -65,7 +68,7 @@ Next, with triclusters and the original dataset we computed the similiarity matr
 $ python3 src/compute_similar_mats_tri.py demo/d1.csv demo/triclusters_d1.txt demo/sim_matrices Class 3 [S1, S2, S3, S4, S5, S6] []
 ```
 
-Finnally with the matrices we run the classifier evaluating the results with repeated stratified k-fold CV:
+Finnally with the matrices we run the classifier, evaluating the results with repeated stratified k-fold CV:
 
 ```
 $ python3 src/compute_predictions.py demo/sim_matrices Class 3 results.csv 2 2
