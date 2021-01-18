@@ -51,9 +51,9 @@ We provide a demo example in [`demo`](/demo) folder.
 First we parsed the [d1.csv](/demo/d1.csv) file to achieve the required formatting by the triclustering algorithm. To do this, use the following command:
 
 ```
-# Usage python3 src/als_dataframe.py <csv_file> <output_tabfile> <target_var> <n_timepoints>
+# Usage python3 src/write_tab_file.py <csv_file> <output_tabfile> <target_var> <n_timepoints>
 
-$ python3 src/als_dataframe.py demo/d1.csv demo/tab_file.tab Class 3
+$ python3 src/write_tab_file.py demo/d1.csv demo/tab_file.tab Class 3
 ```
 
 Next we performed triclustering with TCtriCluster algorithm:
