@@ -201,10 +201,8 @@ def compute_distance_matrix(patients_tri, triclusters, categorical_feats=[], con
             ss = list(map(lambda x: int(x[0].split('-')[-1]), t[0]))
 
             for i in range(len(t)):
-                print("aaaaa")
                 a = np.array(tuple(list(map(lambda y: y[1], t[i]))))
                 b = np.array(tuple(p_pats[i]))[[ss]]
-                print("a", a, "b", b)
 
                 if not corr:
                     dist_set[(pat, tric_names[nTr], i)] = np.linalg.norm(a-b)
