@@ -22,7 +22,7 @@ if __name__ == "__main__":
 
     filename = datafile.split("/")[-1]
 
-    sps = pdata.computeNSnapshots(data_in, 3, target_var)
+    sps = pdata.computeNSnapshots(data_in, n, target_var)
 
     y = list()
     values = list()
