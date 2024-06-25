@@ -65,7 +65,7 @@ $ python3 src/TCtriCluster.py -f demo/tab_file.tab -sT 2 -sS 2 -sG 2 -w 0.1 -o 1
 Next, with triclusters and the original dataset we computed the similiarity matrices
 
 ```
-$ python3 src/compute_similar_mats_tri.py demo/d1.csv demo/triclusters_d1.txt demo/sim_matrices Class 3 [S1, S2, S3, S4, S5, S6] []
+$ python3 src/compute_similar_mats_tri.py demo/d1.csv demo/triclusters_d1.txt demo/sim_matrices Class 3 [F1, F2, F3, F4, F5, F6] []
 ```
 
 Finnally with the matrices we run the classifier, evaluating the results with repeated stratified k-fold CV:
