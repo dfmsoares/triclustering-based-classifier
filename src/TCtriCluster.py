@@ -812,7 +812,7 @@ class Cluster:
                     flag = True
                     if not (fZero(self._pArray3d.dat(T, i, k)) or fZero(self._pArray3d.dat(T, j, k))):
                         for iit in ivn:
-                            if (fZero(iit - self._pArray3d.dat(T, i, k)) or fZero(iit - self._pArray3d.dat(T, k, k))):
+                            if (fZero(iit - self._pArray3d.dat(T, i, k)) or fZero(iit - self._pArray3d.dat(T, j, k))):
                                 flag = False
                                 break
                         if flag:
